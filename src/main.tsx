@@ -7,6 +7,8 @@ import {
   RouterProvider,
 } from 'react-router-dom';
 
+import '@fontsource/inter/cyrillic.css';
+
 import App from './App.tsx';
 
 const router = createBrowserRouter(
