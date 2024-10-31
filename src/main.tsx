@@ -6,27 +6,26 @@ import {
   Route,
   RouterProvider,
 } from 'react-router-dom';
+import { CssBaseline, CssVarsProvider } from '@mui/joy';
 
 import '@fontsource/inter/cyrillic.css';
 
 import App from './App.tsx';
-import { CssBaseline, CssVarsProvider } from '@mui/joy';
-
-import Home from './containers/Home/Home.tsx';
+import Home from './components/HomePage/HomePage.tsx';
 import Presenter from './containers/Presenter/Presenter.tsx';
 import Admin from './containers/Admin/Admin.tsx';
+import ErrorPage from './components/ErrorPage/ErrorPage.tsx';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<App />}>
       <Route index element={<Home />} />
-      <Route path='pages'>
-        <Route path=':title' element={<Presenter />} />
+      <Route path='pages' errorElement={<ErrorPage />}>
+        <Route index element={<Home />} />
         <Route path='admin'>
           <Route index element={<Admin />} />
-          <Route path=':title' element={<Admin />} />
-          <Route path='new' element={<Admin />} />
         </Route>
+        <Route path=':url' element={<Presenter />} />
       </Route>
     </Route>
   )
